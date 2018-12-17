@@ -1,4 +1,4 @@
-language: java
+language: ruby
 sudo: required 
 # docker-cli will be install, it automatically install docker inside the container
 services:
