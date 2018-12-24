@@ -9,4 +9,4 @@ before-install:
 
   # the script section is supposed to contain all the different commands that need to be executed to actually run our test suite.
   script: 
-    - docker run docker-react npm run test -- --coverage
+    - docker run henokyen/docker-react npm run test -- --coverage
