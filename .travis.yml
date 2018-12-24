@@ -5,8 +5,8 @@ services:
 #series of setup that needs to occur before we start to either build/deploy our project or before we start to run our tests. 
 # henokyen/docker-react is your container
 before_install: 
-    - docker build -t henokyen/docker-react -f Dockerfile.dev .
+  - docker build -t henokyen/docker-react -f Dockerfile.dev .
 
   # the script section is supposed to contain all the different commands that need to be executed to actually run our test suite.
-  script: 
-    - docker run henokyen/docker-react npm run test -- --coverage
+script: 
+  - docker run henokyen/docker-react npm run test -- --coverage
