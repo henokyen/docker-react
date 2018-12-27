@@ -9,7 +9,10 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Mazda and Henok using the docker-compose.
+            Liyou and Nehemiah are plying Rodblocks.
+          </p>
+          <p>
+            andd they are talking to strage people.
           </p>
           <a
             className="App-link"
