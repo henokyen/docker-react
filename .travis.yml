@@ -10,3 +10,43 @@ before_install:
   # the script section is supposed to contain all the different commands that need to be executed to actually run our test suite.
 script: 
   - docker run henokyen/docker-react npm run test -- --coverage
+deploy: # a section to tell how travis to deply our application to AWS
+  provider: elasticbranstalk # deply the application on aws ealstic beanstalk
+  region: "us-west-2" #is the  region where you originally created your elastic beanstalk instance.
+  app: "docker_aws_henok" # the name of your application on elatic beanstalk 
+  env: "DockerAwsHenok-env" # the name of the environment on the elatic beanstalk
+
+  #We're going to put in a bucket name so when Travis decides to deploy your codebase it's going to take
+
+  #all the files inside of your github repository and zip them all up into one single file
+
+  #and then it's going to copy all them over to an s3  bucket which is essentially a harddrive
+
+  #running on AWS. once it copies all those files over Travis-CI then going to essentially poke at 
+
+  #classic beanstalk and say Hey I just uploaded this new zip file, use that to redeploy your application.
+  #The S3 bucket is already automatically generated for you when you initially created the elastic beanstalk instance.
+  bucker_name: "elasticbeanstalk-us-west-2-319994344936"
+  
+  #nside of the s3 bucket look for the folder that is essentially the name of your project.
+
+  #Now when you first create your elastic beanstalk instance chances are it's not going to create a folder 
+  #that folder is only going to be created the first time that you do a deploy.
+  #So by default the bucket path that you're supposed to use is going to be exactly equal to the app name.
+  bucket_path: "docker_aws_henok"
+
+  # deploy only when the master branch gets modified
+  on:
+    branch: master
+#Now last thing we have to add in here is a set of API keys that are going to give access to our account over to Travis-ci.
+#meaning, generate that set of API keys from  aws (IAM) and then enter them into this .travis.yml script.
+#Now one quick thing we do not want to take those AWS access keys directly are keys and put them directly into a
+#travesty.yml file. Remember right now our github repository is entirely public so if we put those 
+#AWS keys into our repo and then push that up to github everyone in the world is going to have access
+#to our AWS account and so above all we're going to make sure that we do not put those keys directly in here.
+#Instead we're going to make use of a feature of environment secrets provided by Travis-ci
+#on travis_ci dahsboard, find environment variables. So this is where we're going to stash those AWS secret keys 
+#these environment variables are going to be encrypted and stored by Travis_ci
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
