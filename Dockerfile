@@ -13,6 +13,6 @@ from nginx
 #It's going to look at this Dockerfile file and it's going to look for the Expose instruction and 
 #then whatever port you list in there is what elastic beanstalk is going to map directly automatically.
 expose 80
-copy --from=builder /app/build /usr/share/ngnix/html
+copy --from=builder /app/build /usr/share/nginx/html
 # it will start aoutomaticlly so we don't have to specify a command
 
