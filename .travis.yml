@@ -11,7 +11,7 @@ before_install:
 script: 
   - docker run henokyen/docker-react npm run test -- --coverage
 deploy: # a section to tell how travis to deply our application to AWS
-  provider: elasticbranstalk # deply the application on aws ealstic beanstalk
+  provider: elasticbeanstalk # deply the application on aws ealstic beanstalk
   region: "us-west-2" #is the  region where you originally created your elastic beanstalk instance.
   app: "docker_aws_henok" # the name of your application on elatic beanstalk 
   env: "DockerAwsHenok-env" # the name of the environment on the elatic beanstalk
@@ -26,7 +26,7 @@ deploy: # a section to tell how travis to deply our application to AWS
 
   #classic beanstalk and say Hey I just uploaded this new zip file, use that to redeploy your application.
   #The S3 bucket is already automatically generated for you when you initially created the elastic beanstalk instance.
-  bucker_name: "elasticbeanstalk-us-west-2-319994344936"
+  bucket_name: "elasticbeanstalk-us-west-2-319994344936"
   
   #nside of the s3 bucket look for the folder that is essentially the name of your project.
 
